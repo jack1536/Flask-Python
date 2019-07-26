@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
+from collegedata_generator import cdgmain
 
 app = Flask(__name__)
 api = Api(app)
@@ -52,11 +53,11 @@ class Movies_List(Resource):
     
 class All_Movies(Resource):
     def get(self):
-        return {'Movifes': list(map(lambda x: x.json(), Movies.query.all()))}
+        return {'output': cdgmain()}
     
 api.add_resource(All_Movies, '/')
 api.add_resource(Movies_List, '/<string:movie>')
 
 if __name__=='__main__':
     
-    app.run(debug=True)
+    app.run(debug=False)
