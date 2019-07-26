@@ -52,7 +52,7 @@ class Movies_List(Resource):
     
 class All_Movies(Resource):
     def get(self):
-        return {'Movies': list(map(lambda x: x.json(), Movies.query.all()))}
+        return {'Movifes': list(map(lambda x: x.json(), Movies.query.all()))}
     
 api.add_resource(All_Movies, '/')
 api.add_resource(Movies_List, '/<string:movie>')

@@ -1,1 +1,1 @@
-# Flask examples for rest api and docker
+# Flask examples for rest api
