@@ -53,7 +53,7 @@ class Movies_List(Resource):
     
 class All_Movies(Resource):
     def get(self):
-        filename = "schoolNames.csv"
+        filename = "27PageAll.csv"
         cdgmain(filename)
         send_email("jackdavidweber@gmail.com", filename)
         return {'output': "sent!"}

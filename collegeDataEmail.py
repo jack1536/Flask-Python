@@ -163,6 +163,7 @@ def cdgmain(filename):
     url_start = 'https://api.data.gov/ed/collegescorecard/v1/schools.json?_per_page=100&page='
     url_end = url_end_generator(field_list)
     object_of_interest= 'results'
-    df = multi_api_to_df(3, object_of_interest, url_start, url_end)
-    testdf = df[['school.name']]
-    testdf.to_csv(filename)
+    df = multi_api_to_df(27, object_of_interest, url_start, url_end)
+    #testdf = df[['school.name']]
+    #testdf.to_csv(filename)
+    df.to_csv(filename)
