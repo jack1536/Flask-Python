@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from collegedata_generator import cdgmain
+from sendEmail import send_email
 
 app = Flask(__name__)
 api = Api(app)
@@ -53,6 +54,7 @@ class Movies_List(Resource):
     
 class All_Movies(Resource):
     def get(self):
+        send_email("jackdavidweber@gmail.com")
         return {'output': cdgmain()}
     
 api.add_resource(All_Movies, '/')
