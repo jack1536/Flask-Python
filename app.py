@@ -15,12 +15,7 @@ db.create_all()
 
 class Movies_List(Resource):
     parser = reqparse.RequestParser()
-    
-    """
-    parser.add_argument('min_ACT', type=int, required=False, help='Minimum acceptable ACT Score')
-    parser.add_argument('gender_distribution', type=int, required=False, help='Desired gender distribution')
-    parser.add_argument('email', type=str, required=True, help='email address of the recipient')
-    """
+
     parser.add_argument('director', type=str, required=False, help='Director of the movie')
     parser.add_argument('genre', type=str, required=False, help='Genre of the movie')
     parser.add_argument('collection', type=int, required=True, help='Gross collection of the movie')
@@ -60,17 +55,11 @@ class Movies_List(Resource):
 
 class Email_Data(Resource):
     parser = reqparse.RequestParser()
-    print(parser)
-    """
-    parser.add_argument('min_ACT', type=int, required=False, help='Minimum acceptable ACT Score')
-    parser.add_argument('gender_distribution', type=int, required=False, help='Desired gender distribution')
-    parser.add_argument('email', type=str, required=True, help='email address of the recipient')
-    """
-    #parser.add_argument('director', type=str, required=False, help='Director of the movie')
-    parser.add_argument('min_ACT', type=int, required=False, help='Genre of the movie')
-    parser.add_argument('recipient_email', type=str, required=True, help='Gross collection of the movie')
-    parser.add_argument('filter_dict', type=dict, required=True, help='Gross collection of the movie')
 
+    #parser.add_argument('director', type=str, required=False, help='Director of the movie')
+    #parser.add_argument('min_ACT', type=int, required=False, help='Genre of the movie')
+    parser.add_argument('recipient_email', type=str, required=True, help='email to send attachement to')
+    parser.add_argument('filter_dict', type=dict, required=True, help='dictionary with all of filter information')
      
     def get(self):
         return {'class': 'Email_Data'}
