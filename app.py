@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
-from collegeDataEmail import college_data_email, send_email
+from step_2 import step_2_main
 
 app = Flask(__name__)
 api = Api(app)
@@ -60,7 +60,7 @@ class Movies_List(Resource):
 
 class Email_Data(Resource):
     parser = reqparse.RequestParser()
-    
+    print(parser)
     """
     parser.add_argument('min_ACT', type=int, required=False, help='Minimum acceptable ACT Score')
     parser.add_argument('gender_distribution', type=int, required=False, help='Desired gender distribution')
@@ -69,6 +69,7 @@ class Email_Data(Resource):
     #parser.add_argument('director', type=str, required=False, help='Director of the movie')
     parser.add_argument('min_ACT', type=int, required=False, help='Genre of the movie')
     parser.add_argument('recipient_email', type=str, required=True, help='Gross collection of the movie')
+    parser.add_argument('filter_dict', type=dict, required=True, help='Gross collection of the movie')
 
      
     def get(self):
@@ -77,17 +78,12 @@ class Email_Data(Resource):
 
     def post(self):
         args = Email_Data.parser.parse_args()
-        
-        college_data_email(args['recipient_email'], "personalized.csv", args['min_ACT'])
-
+        step_2_main("step_1_folder/simple_raw_data.plk", args['filter_dict'], args['recipient_email'])
         return {'output': "sent!"}
 
 
 class All_Movies(Resource):
     def get(self):
-        filename = "schoolNames.csv"
-        #cdgmain(filename)
-        #send_email("jackdavidweber@gmail.com", filename)
         return {'output': "Nothing for now"}
     
 api.add_resource(All_Movies, '/')
@@ -96,4 +92,4 @@ api.add_resource(Movies_List, '/<string:movie>')
 
 if __name__=='__main__':
     
-    app.run(debug=False)
+    app.run(debug=True)
