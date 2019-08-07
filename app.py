@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
-from flask_cors import CORS
+#from flask_cors import CORS
 from step_2 import step_2_main
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///base.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
