@@ -10,6 +10,55 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+field_list = [
+    "ope6_id",
+    "school.name",
+    "school.state",
+    "school.zip",
+    "school.ownership",
+    "school.region_id",
+    "school.price_calculator_url",
+    "school.institutional_characteristics.level",
+    "school.degrees_awarded.predominant",
+    "school.degrees_awarded.highest",
+    "school.carnegie_basic",
+    "school.carnegie_undergrad",
+    "school.carnegie_size_setting",
+    "school.degree_urbanization",
+    "latest.student.size",
+    "school.online_only",
+    "school.minority_serving.historically_black",
+    "school.religious_affiliation",
+    "school.online_only",
+    "latest.student.part_time_share",
+    "latest.student.grad_students",
+    "latest.student.demographics.women",
+    "latest.completion.completion_rate_4yr_100nt",
+    "latest.completion.completion_rate_4yr_150nt",
+    "latest.admissions.admission_rate.overall",
+    "latest.admissions.sat_scores.25th_percentile.critical_reading",
+    "latest.admissions.sat_scores.75th_percentile.critical_reading",
+    "latest.admissions.sat_scores.25th_percentile.math",
+    "latest.admissions.sat_scores.75th_percentile.math",
+    "latest.admissions.sat_scores.average.overall",
+    "latest.admissions.act_scores.25th_percentile.cumulative",
+    "latest.admissions.act_scores.75th_percentile.cumulative",
+    "latest.admissions.act_scores.midpoint.cumulative",
+    "latest.cost.tuition.in_state",
+    "latest.cost.tuition.out_of_state",
+    "latest.aid.pell_grant_rate",
+    "latest.cost.net_price.public.by_income_level.0-30000",
+    "latest.cost.net_price.private.by_income_level.0-30000",
+    "latest.cost.net_price.public.by_income_level.30001-48000",
+    "latest.cost.net_price.private.by_income_level.30001-48000",
+    "latest.cost.net_price.public.by_income_level.48001-75000",
+    "latest.cost.net_price.private.by_income_level.48001-75000",
+    "latest.cost.net_price.public.by_income_level.75001-110000",
+    "latest.cost.net_price.private.by_income_level.75001-110000",
+    "latest.cost.net_price.public.by_income_level.110001-plus",
+    "latest.cost.net_price.private.by_income_level.110001-plus",
+    "school.operating",
+]
 
 context_dict = {
     "school.carnegie_basic": {
@@ -219,7 +268,7 @@ def csv_to_list(filename):
     for line in file_in:
         line = line[:-1]
         lol.append(line)
-    
+    print(lol)
     return (lol[1:-1]) # removes the wrapers.
 
 
@@ -245,12 +294,13 @@ def url_end_generator(fields):
 
     # limitation not allowing schools that have a less than four year completion rate (Not working)
     # limitations += "&latest.completion.completion_rate_less_than_4yr_150nt=None"
-    
+    print('\nfields', fields)
     url = limitations + "&_fields="
     for field in fields:
         url += field + ","
     url += "&api_key=IGlx37HV88IkLl14qDgb1siyF2bPjrNZ9DXwFZKQ"
-    
+    #url = url.replace('\r','')
+    print("end", url)
     return url
 
 
@@ -268,8 +318,9 @@ def api_to_df(url, object_of_interest):
 
 
 def page_flipper(pagenumber, url_start, url_end):
+    print("start",url_start)
     url = url_start + str(pagenumber) + url_end
-    #print(url)
+    print("url", url)
     return url
 
 
@@ -315,14 +366,31 @@ def give_context(d, df):
         dft = dft.replace({key: d[key]})
         
     return dft
+
+
+def sex_column_helper(dem_float):
+    if dem_float == 0:
+        return "Single-Sex: Men"
+    elif dem_float == 1:
+        return "Single-Sex: Women"
+    elif dem_float>0 and dem_float < 1 :
+        return "Co-Educational"
+    else:
+        return "Not Listed"
     
+    
+def sex_column(df):
+    dft = df
+    dft["singlesex.or.coed"] = dft["latest.student.demographics.women"].apply(sex_column_helper)
+    return dft
+
 
 def store_df(df, new_filename):
     df.to_pickle(new_filename)
 
 
 def step_1_main(csv_filename, api_pages, context_dict, plk_filename):
-    field_list = csv_to_list("simpleFields2.csv")
+    #field_list = csv_to_list("simpleFields2.csv")
 
     # Generate
     df = generate_raw_df(field_list, api_pages)
@@ -330,6 +398,8 @@ def step_1_main(csv_filename, api_pages, context_dict, plk_filename):
     # Clean data
     df = organize_columns(df, field_list)
     df = give_context(context_dict, df) # note that context_dict will prob come in as json and then need to be converted eventually
+    df = sex_column(df) # creates a column that breaks down single-sex vs coed
+
 
     # Store Data
     store_df(df, plk_filename)
