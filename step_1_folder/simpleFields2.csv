@@ -3,16 +3,18 @@ ope6_id
 school.name
 school.state
 school.zip
-location.lat
-location.lon
+school.ownership
 school.region_id
 school.price_calculator_url
+school.institutional_characteristics.level
+school.degrees_awarded.predominant
+school.degrees_awarded.highest
 school.carnegie_basic
 school.carnegie_undergrad
 school.carnegie_size_setting
 school.degree_urbanization
 latest.student.size
-latest.student.enrollment.all
+school.online_only
 school.minority_serving.historically_black
 school.religious_affiliation
 school.online_only
@@ -43,4 +45,5 @@ latest.cost.net_price.public.by_income_level.75001-110000
 latest.cost.net_price.private.by_income_level.75001-110000
 latest.cost.net_price.public.by_income_level.110001-plus
 latest.cost.net_price.private.by_income_level.110001-plus
+school.operating
 This is a necessary wrapper DONT DELETE
