@@ -1,4 +1,4 @@
-## Project Goals
+## Project Achievements
 
   - Learn how to build a restful Flask backend
   - Learn how to pull data from API's
