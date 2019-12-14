@@ -57,7 +57,7 @@ def filter_main(d, df):
 def send_email(receiver_email, filename):
     # Credentials
     sender_email = "jdw.coding.projects@gmail.com"
-    password = "NX634K&uV"
+    password = "PASSWORD_HERE"
     
     # Contents
     subject = "Test Email: " + str(datetime.datetime.now())
