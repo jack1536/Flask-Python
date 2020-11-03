@@ -18,8 +18,6 @@
 ### Help students through the first step of the college process with data!
   In order to make the project useful to students, I created a [simple frontend](https://github.com/jack1536/simpleCollegeDataForm.git). The frontend collects information on the student's preferences and submits a post request to the backend. This post request causes the data to be filtered and triggers an email to be sent to the inputted email address with the actual data. Emailing the data seemed like a good solution to the annoyance of waiting for the download.
   
-  [Try out the live demo here!](https://simplecollegedataform.herokuapp.com/)
-  
   
 ### Future Steps
   - export the data to an excel workbook with multiple sheets and better formatting to make it easier for users to interpret the data
