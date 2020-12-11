@@ -405,4 +405,4 @@ def step_1_main(csv_filename, api_pages, context_dict, plk_filename):
     store_df(df, plk_filename)
     
 
-step_1_main("simpleFields2.csv", 27, context_dict, "simple_raw_data.plk" )
+step_1_main("simpleFields2.csv", 50, context_dict, "simple_raw_data.plk" )
