@@ -1,8 +1,10 @@
 import MySQLdb
+import os
 
 host = '162.241.230.118'
 user = 'codetran_heroku'
-password = 'omPtalTi'
+password = os.environ['MYSQL_PASSWORD']
+# password = 'omPtalTi'
 port = 3306
 db = 'codetran_collegedata'
 
@@ -25,4 +27,5 @@ def test_select():
 
     print(l)
     return l
-# test_select()
+
+test_select()
