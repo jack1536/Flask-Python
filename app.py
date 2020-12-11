@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
 from step_2 import step_2_main
+from db_interface import test_select
 
 app = Flask(__name__)
 CORS(app)
@@ -64,7 +65,7 @@ class Email_Data(Resource):
     parser.add_argument('filter_dict', type=dict, required=True, help='dictionary with all of filter information')
      
     def get(self):
-        return {'class': 'Email_Data', 'last_update': '12.11.2020'}
+        return {'class': 'Email_Data', 'last_update': '12.11.2020', 'test_db_connection': test_select()}
 
 
     def post(self):
