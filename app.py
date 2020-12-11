@@ -64,7 +64,7 @@ class Email_Data(Resource):
     parser.add_argument('filter_dict', type=dict, required=True, help='dictionary with all of filter information')
      
     def get(self):
-        return {'class': 'Email_Data'}
+        return {'class': 'Email_Data', 'last_update': '12.11.2020'}
 
 
     def post(self):
