@@ -7,7 +7,6 @@ import os
 host = '162.241.230.118'
 user = os.environ['MYSQL_USER']
 password = os.environ['MYSQL_PASSWORD']
-# password = 'omPtalTi'
 port = 3306
 db = 'codetran_collegedata'
 
@@ -23,7 +22,6 @@ conn = MySQLdb.Connection(
 def test_select():
     print("test select started")
 
-
     # Example of how to fetch table data:
     conn.query("""SELECT * FROM james_table""")
     result = conn.store_result()
@@ -34,5 +32,3 @@ def test_select():
 
     print("returned list", l)
     return l
-
-# test_select()
