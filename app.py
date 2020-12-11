@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
 from step_2 import step_2_main
-from db_interface import test_select
+# from db_interface import test_select
 
 app = Flask(__name__)
 CORS(app)
