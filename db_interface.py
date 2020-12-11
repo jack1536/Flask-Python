@@ -1,21 +1,24 @@
 import MySQLdb
 
-host = '162.241.230.118'
-user = 'codetran_heroku'
-# password = os.environ['MYSQL_PASSWORD']
-password = 'omPtalTi'
-port = 3306
-db = 'codetran_collegedata'
 
-conn = MySQLdb.Connection(
-    host=host,
-    user=user,
-    passwd=password,
-    port=port,
-    db=db
-)
 
 def test_select():
+    print("test select started")
+    host = '162.241.230.118'
+    user = 'codetran_heroku'
+    # password = os.environ['MYSQL_PASSWORD']
+    password = 'omPtalTi'
+    port = 3306
+    db = 'codetran_collegedata'
+
+    conn = MySQLdb.Connection(
+        host=host,
+        user=user,
+        passwd=password,
+        port=port,
+        db=db
+    )
+
     # Example of how to fetch table data:
     conn.query("""SELECT * FROM james_table""")
     result = conn.store_result()
@@ -24,7 +27,7 @@ def test_select():
     for i in range(result.num_rows()):
         l.append(result.fetch_row())
 
-    print(l)
+    print("returned list", l)
     return l
 
 # test_select()
