@@ -1,4 +1,9 @@
 """
+Program to convert from JSON that is outputted by collegespreadsheets frontent to SQL query
+that can be processed by database.
+Below is an example for illustration purposes:
+
+JSON from frontend:
 {"filter_dict":
     {"is_in":{"school.region_id":["Mid East (DE, DC, MD, NJ, NY, PA)"]},
     "is_btwn":{
@@ -8,6 +13,7 @@
 },
 "recipient_email":"jackdavidweber@gmail.com"}
 
+Expected SQL Query from querybuilder:
 SELECT school_name, latest_admissions_act_scores_midpoint_cumulative, latest_student_size, school_region_id
 FROM codetran_collegedata.collegescorecard
 WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 28 AND 34
@@ -58,41 +64,3 @@ def build_query(tablename, select_cols, filter_dict):
         query = query + " AND " + where_list[i]
 
     return query
-
-
-
-
-
-    
-
-
-
-
-    
-
-
-
-
-
-
-
-
-class QueryBuilder:
-    def __init__(self, tablename):
-        self.tablename = tablename
-        self.btwn_conditions = {}
-        self.in_conditions = {}
-
-    def add_btwn_condition(self, col, min, max, inclusive):
-        # replace . in col with _
-        col = col.replace(".", "_")
-
-        # add into table
-        self.btwn_conditions[col] = {min, max, inclusive}
-    
-    
-
-
-# qb = QueryBuilder("james_table")
-# qb.add_btwn_condition("hello.world", 1, 1, 1)
-    
