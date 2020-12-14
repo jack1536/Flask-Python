@@ -59,20 +59,20 @@ class Movies_List(Resource):
 
 class Email_Data(Resource):
     parser = reqparse.RequestParser()
-
-    #parser.add_argument('director', type=str, required=False, help='Director of the movie')
-    #parser.add_argument('min_ACT', type=int, required=False, help='Genre of the movie')
     parser.add_argument('recipient_email', type=str, required=True, help='email to send attachement to')
     parser.add_argument('filter_dict', type=dict, required=True, help='dictionary with all of filter information')
      
     def get(self):
-        return {'class': 'Email_Data', 'last_update': '12.11.2020', 'test_db_connection': test_select()}
+        # make a call for one row of data in order to extract column names
+        q = 'SELECT * FROM codetran_collegedata.collegescorecard WHERE school_name="Pomona College"'
+        column_names = query_to_json(q)['column_names']
+
+        return {'class': 'Email_Data', 'tablename': "codetran_collegedata.collegescorecard", 'column_names': column_names}
 
 
     def post(self):
         args = Email_Data.parser.parse_args()
-        # step_2_main("step_1_folder/simple_raw_data.plk", args['filter_dict'], args['recipient_email'])
-        
+
         # build query
         tablename = "codetran_collegedata.collegescorecard"
         select_col = ["school_name", "school_state"]
