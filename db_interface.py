@@ -52,13 +52,13 @@ def execute_query(q):
 
 def query_to_json(q):
     result = execute_query(q)
-    result_temp = result
-
     first_row = result.fetch_row(how=1)
+
+    # if query doesn't return anything, return object with empty lists
     if len(first_row) == 0:
         return {"column_names": [], "data": []}
 
-    # column names are grabbed from first row TODO: catch error if no data is returned
+    # column names are grabbed from first row
     out = {
         "column_names": list(first_row[0].keys()),
         "data": [tuple(first_row[0].values())]  
