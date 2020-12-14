@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
 from step_2 import step_2_main
 from db_interface import test_select
+from querybuilder import build_query
 
 app = Flask(__name__)
 CORS(app)
@@ -70,8 +71,14 @@ class Email_Data(Resource):
 
     def post(self):
         args = Email_Data.parser.parse_args()
-        step_2_main("step_1_folder/simple_raw_data.plk", args['filter_dict'], args['recipient_email'])
-        return {'output': "sent!"}
+        # step_2_main("step_1_folder/simple_raw_data.plk", args['filter_dict'], args['recipient_email'])
+        
+        # build query
+        tablename = "codetran_collegedata.collegescorecard"
+        select_col = ["school_name"]
+        query = build_query(tablename, select_col, args['filter_dict'])
+
+        return {'output': "sent!", "query": query}
 
 
 class All_Movies(Resource):
