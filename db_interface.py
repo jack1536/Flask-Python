@@ -50,10 +50,25 @@ def execute_query(q):
 
 # {'school_name': 'Columbia University in the City of New York', 'latest_student_size': Decimal('8216.0')}
 
-def query_to_dict_of_lists(q):
+def query_to_json(q):
     result = execute_query(q)
+    result_temp = result
 
-    return result.fetch_row(maxrows=0, how=1)
+    first_row = result.fetch_row(how=1)
+    if len(first_row) == 0:
+        return {"column_names": [], "data": []}
+
+    # column names are grabbed from first row TODO: catch error if no data is returned
+    out = {
+        "column_names": list(first_row[0].keys()),
+        "data": [tuple(first_row[0].values())]  
+        }
+
+    # add the rest of the rows to data
+    l = result.fetch_row(maxrows=0, how=0)
+    out["data"].extend(l)
+
+    return out
 
 
 
@@ -67,5 +82,5 @@ def query_to_dict_of_lists(q):
 # execute_query("""SELECT * FROM james_table""")
 # execute_query("SELECT * FROM james_table")
 # execute_query("SELECT school_name, latest_student_size FROM codetran_collegedata.collegescorecard WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 32 AND 36 AND latest_student_size BETWEEN 0 AND 50000")
-query_to_dict_of_lists("SELECT school_name, latest_student_size FROM codetran_collegedata.collegescorecard WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 32 AND 36 AND latest_student_size BETWEEN 0 AND 50000")
+query_to_json("SELECT school_name, latest_student_size FROM codetran_collegedata.collegescorecard WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 34 AND 30 AND latest_student_size BETWEEN 0 AND 50000")
 # test_select()
