@@ -1,7 +1,9 @@
 from dotenv import load_dotenv
 load_dotenv()
 import MySQLdb
+from MySQLdb import _mysql
 import os
+from MySQLdb.constants import FIELD_TYPE
 
 
 host = '162.241.230.118'
@@ -9,8 +11,10 @@ user = os.environ['MYSQL_USER']
 password = os.environ['MYSQL_PASSWORD']
 port = 3306
 db = 'codetran_collegedata'
+my_conv = { FIELD_TYPE.LONG: int, FIELD_TYPE.DECIMAL: int}
 
 conn = MySQLdb.Connection(
+    conv = my_conv, # FIXME: this does not seem to be working yet TAIGA#10
     host=host,
     user=user,
     passwd=password,
@@ -18,17 +22,31 @@ conn = MySQLdb.Connection(
     db=db
 )
 
-
-def test_select():
-    print("test select started")
-
-    # Example of how to fetch table data:
-    conn.query("""SELECT * FROM james_table""")
+def execute_query(q):
+    conn.query(q)
     result = conn.store_result()
 
-    l  = []
-    for i in range(result.num_rows()):
-        l.append(result.fetch_row())
+    return result
 
-    print("returned list", l)
-    return l
+
+def query_to_json(q):
+    result = execute_query(q)
+    first_row = result.fetch_row(how=1)
+
+    # if query doesn't return anything, return object with empty lists
+    if len(first_row) == 0:
+        return {"column_names": [], "data": []}
+
+    # column names are grabbed from first row
+    out = {
+        "column_names": list(first_row[0].keys()),
+        "data": [tuple(first_row[0].values())]  
+        }
+
+    # add the rest of the rows to data
+    l = result.fetch_row(maxrows=0, how=0)
+    out["data"].extend(l)
+
+    return out
+
+

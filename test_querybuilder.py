@@ -1,7 +1,7 @@
 import unittest2
 import querybuilder as qb
 
-class TestLogStatement(unittest2.TestCase):
+class TestQueryBuilder(unittest2.TestCase):
 
     def test_empty(self):
         tablename = "myTable"
