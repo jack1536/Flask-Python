@@ -2,8 +2,8 @@ from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
 from step_2 import step_2_main
-from db_interface import test_select
 from querybuilder import build_query
+from db_interface import query_to_json
 
 app = Flask(__name__)
 CORS(app)
@@ -75,10 +75,9 @@ class Email_Data(Resource):
         
         # build query
         tablename = "codetran_collegedata.collegescorecard"
-        select_col = ["school_name"]
-        query = build_query(tablename, select_col, args['filter_dict'])
-
-        return {'output': "sent!", "query": query}
+        select_col = ["school_name", "school_state"]
+        q = build_query(tablename, select_col, args['filter_dict'])
+        return {"table": query_to_json(q)}
 
 
 class All_Movies(Resource):

@@ -35,17 +35,17 @@ def query_to_json(q):
 
     # if query doesn't return anything, return object with empty lists
     if len(first_row) == 0:
-        return {"column_names": [], "data": []}
+        return {"column_names": [], "rows": []}
 
     # column names are grabbed from first row
     out = {
         "column_names": list(first_row[0].keys()),
-        "data": [tuple(first_row[0].values())]  
+        "rows": [tuple(first_row[0].values())]  
         }
 
     # add the rest of the rows to data
     l = result.fetch_row(maxrows=0, how=0)
-    out["data"].extend(l)
+    out["rows"].extend(l)
 
     return out
 
