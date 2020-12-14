@@ -42,7 +42,7 @@ class TestDb_Interface(unittest2.TestCase):
         actualOutput = query_to_json(q)
         expectedOutput = {
             "column_names": ["school_name", "latest_student_size"],
-             "data": [("Pomona College", "CA"), ("Rice University", "TX")]
+             "data": [("Pomona College", 1549.0), ("Rice University", 3962.0)]
         }
 
         self.assertEqual(actualOutput["column_names"], expectedOutput["column_names"])

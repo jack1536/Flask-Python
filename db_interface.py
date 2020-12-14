@@ -1,7 +1,10 @@
 from dotenv import load_dotenv
 load_dotenv()
 import MySQLdb
+from MySQLdb import _mysql
 import os
+from MySQLdb.constants import FIELD_TYPE
+
 
 
 host = '162.241.230.118'
@@ -10,13 +13,27 @@ password = os.environ['MYSQL_PASSWORD']
 port = 3306
 db = 'codetran_collegedata'
 
+my_conv = { FIELD_TYPE.LONG: int, FIELD_TYPE.DECIMAL: int}
+
 conn = MySQLdb.Connection(
+    conv = my_conv, # FIXME: this does not seem to be working yet TAIGA#10
     host=host,
     user=user,
     passwd=password,
     port=port,
     db=db
 )
+
+
+
+# conn=_mysql.connect(
+#     conv = my_conv,
+#     host=host,
+#     user=user,
+#     passwd=password,
+#     port=port,
+#     db=db
+# )
 
 
 def test_select():
