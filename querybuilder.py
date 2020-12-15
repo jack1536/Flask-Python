@@ -22,11 +22,13 @@ AND school_region_id IN ("Mid East (DE, DC, MD, NJ, NY, PA)")
 ;
 """
 
+
 def build_query(tablename, select_cols, filter_dict):
     # SELECT
     select_cols = ", ".join(select_cols)  # join list items with commas between
-    select_cols = select_cols.replace(".", "_")  # replace . in column names with _
-    select_str =  "SELECT " + select_cols
+    select_cols = select_cols.replace(".",
+                                      "_")  # replace . in column names with _
+    select_str = "SELECT " + select_cols
 
     # FROM
     from_str = "FROM " + tablename
@@ -42,23 +44,24 @@ def build_query(tablename, select_cols, filter_dict):
         upper = btwn_dict[k]['max']
         condition = col + " BETWEEN " + str(lower) + " AND " + str(upper)
         where_list.append(condition)
-    
+
     # WHERE IN
     in_dict = filter_dict["is_in"]
     for k in in_dict.keys():
         col = k.replace(".", "_")
         options = in_dict[k]  # list of options that row value must be in
-        options = '"' + '", "'.join(options) + '"' #  make options into string (SQL format)
-        condition = col +  " IN (" + options + ")"
+        options = '"' + '", "'.join(
+            options) + '"'  #  make options into string (SQL format)
+        condition = col + " IN (" + options + ")"
         where_list.append(condition)
 
     # Put everything together
     query = select_str + " " + from_str
-    
+
     # if no conditions, return query without WHERE
     if len(where_list) == 0:
         return query
-    
+
     query = query + " WHERE " + where_list[0]  # add first condition to query
     for i in range(1, len(where_list)):
         query = query + " AND " + where_list[i]

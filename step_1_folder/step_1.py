@@ -62,43 +62,78 @@ field_list = [
 
 context_dict = {
     "school.carnegie_basic": {
-        -2: 'Not applicable',
-        0: '(Not classified)',
-        1: 'Associates Colleges: High Transfer-High Traditional',
-        2: 'Associates Colleges: High Transfer-Mixed Traditional/Nontraditional',
-        3: 'Associates Colleges: High Transfer-High Nontraditional',
-        4: 'Associates Colleges: Mixed Transfer/Vocational & Technical-High Traditional',
-        5: 'Associates Colleges: Mixed Transfer/Vocational & Technical-Mixed Traditional/Nontraditional',
-        6: 'Associates Colleges: Mixed Transfer/Vocational & Technical-High Nontraditional',
-        7: 'Associates Colleges: High Vocational & Technical-High Traditional',
-        8: 'Associates Colleges: High Vocational & Technical-Mixed Traditional/Nontraditional',
-        9: 'Associates Colleges: High Vocational & Technical-High Nontraditional',
-        10: 'Special Focus Two-Year: Health Professions',
-        11: 'Special Focus Two-Year: Technical Professions',
-        12: 'Special Focus Two-Year: Arts & Design',
-        13: 'Special Focus Two-Year: Other Fields',
-        14: 'Baccalaureate/Associates Colleges: Associates Dominant',
-        15: 'Doctoral Universities: Highest Research Activity',
-        16: 'Doctoral Universities: Higher Research Activity',
-        17: 'Doctoral Universities: Moderate Research Activity',
-        18: 'Masters Colleges & Universities: Larger Programs',
-        19: 'Masters Colleges & Universities: Medium Programs',
-        20: 'Masters Colleges & Universities: Small Programs',
-        21: 'Baccalaureate Colleges: Arts & Sciences Focus',
-        22: 'Baccalaureate Colleges: Diverse Fields',
-        23: 'Baccalaureate/Associates Colleges: Mixed Baccalaureate/Associates',
-        24: 'Special Focus Four-Year: Faith-Related Institutions',
-        25: 'Special Focus Four-Year: Medical Schools & Centers',
-        26: 'Special Focus Four-Year: Other Health Professions Schools',
-        27: 'Special Focus Four-Year: Engineering Schools',
-        28: 'Special Focus Four-Year: Other Technology-Related Schools',
-        29: 'Special Focus Four-Year: Business & Management Schools',
-        30: 'Special Focus Four-Year: Arts, Music & Design Schools',
-        31: 'Special Focus Four-Year: Law Schools',
-        32: 'Special Focus Four-Year: Other Special Focus Institutions',
-        33: 'Tribal Colleges',
+        -2:
+            'Not applicable',
+        0:
+            '(Not classified)',
+        1:
+            'Associates Colleges: High Transfer-High Traditional',
+        2:
+            'Associates Colleges: High Transfer-Mixed Traditional/Nontraditional',
+        3:
+            'Associates Colleges: High Transfer-High Nontraditional',
+        4:
+            'Associates Colleges: Mixed Transfer/Vocational & Technical-High Traditional',
+        5:
+            'Associates Colleges: Mixed Transfer/Vocational & Technical-Mixed Traditional/Nontraditional',
+        6:
+            'Associates Colleges: Mixed Transfer/Vocational & Technical-High Nontraditional',
+        7:
+            'Associates Colleges: High Vocational & Technical-High Traditional',
+        8:
+            'Associates Colleges: High Vocational & Technical-Mixed Traditional/Nontraditional',
+        9:
+            'Associates Colleges: High Vocational & Technical-High Nontraditional',
+        10:
+            'Special Focus Two-Year: Health Professions',
+        11:
+            'Special Focus Two-Year: Technical Professions',
+        12:
+            'Special Focus Two-Year: Arts & Design',
+        13:
+            'Special Focus Two-Year: Other Fields',
+        14:
+            'Baccalaureate/Associates Colleges: Associates Dominant',
+        15:
+            'Doctoral Universities: Highest Research Activity',
+        16:
+            'Doctoral Universities: Higher Research Activity',
+        17:
+            'Doctoral Universities: Moderate Research Activity',
+        18:
+            'Masters Colleges & Universities: Larger Programs',
+        19:
+            'Masters Colleges & Universities: Medium Programs',
+        20:
+            'Masters Colleges & Universities: Small Programs',
+        21:
+            'Baccalaureate Colleges: Arts & Sciences Focus',
+        22:
+            'Baccalaureate Colleges: Diverse Fields',
+        23:
+            'Baccalaureate/Associates Colleges: Mixed Baccalaureate/Associates',
+        24:
+            'Special Focus Four-Year: Faith-Related Institutions',
+        25:
+            'Special Focus Four-Year: Medical Schools & Centers',
+        26:
+            'Special Focus Four-Year: Other Health Professions Schools',
+        27:
+            'Special Focus Four-Year: Engineering Schools',
+        28:
+            'Special Focus Four-Year: Other Technology-Related Schools',
+        29:
+            'Special Focus Four-Year: Business & Management Schools',
+        30:
+            'Special Focus Four-Year: Arts, Music & Design Schools',
+        31:
+            'Special Focus Four-Year: Law Schools',
+        32:
+            'Special Focus Four-Year: Other Special Focus Institutions',
+        33:
+            'Tribal Colleges',
     },
-    'school.carnegie_undergrad' : {
+    'school.carnegie_undergrad': {
         -2: 'Not applicable',
         0: 'Not classified (Exclusively Graduate)',
         1: 'Two-year, higher part-time',
@@ -115,9 +150,9 @@ context_dict = {
         12: 'Four-year, full-time, selective, lower transfer-in',
         13: 'Four-year, full-time, selective, higher transfer-in',
         14: 'Four-year, full-time, more selective, lower transfer-in',
-        15: 'Four-year, full-time, more selective, higher transfer-in',  
+        15: 'Four-year, full-time, more selective, higher transfer-in',
     },
-    'school.carnegie_size_setting' : {
+    'school.carnegie_size_setting': {
         -2: 'Not applicable',
         0: '(Not classified)',
         1: 'Two-year, very small',
@@ -151,7 +186,7 @@ context_dict = {
         8: 'Far West (AK, CA, HI, NV, OR, WA)',
         9: 'Outlying Areas (AS, FM, GU, MH, MP, PR, PW, VI)',
     },
-    "school.religious_affiliation" : {
+    "school.religious_affiliation": {
         -2: 'Not applicable',
         22: 'American Evangelical Lutheran Church',
         24: 'African Methodist Episcopal Zion Church',
@@ -220,38 +255,38 @@ context_dict = {
         106: 'Muslim',
         107: 'Plymouth Brethren',
     },
-    "school.ownership" : {
+    "school.ownership": {
         1: 'Public',
         2: 'Private nonprofit',
         3: 'Private for-profit',
     },
-    "school.operating" : {
+    "school.operating": {
         0: 'Not currently certified as an operating institution',
         1: 'Currently certified as operating',
     },
-    "school.online_only" : {
+    "school.online_only": {
         0: 'Not distance-education only',
         1: 'Distance-education only',
     },
-    "school.minority_serving.historically_black" : {
+    "school.minority_serving.historically_black": {
         0: 'No',
         1: 'Yes',
     },
-    "school.degrees_awarded.predominant" : {
+    "school.degrees_awarded.predominant": {
         0: 'Not classified',
         1: 'Predominantly certificate-degree granting',
         2: 'Predominantly associates-degree granting',
         3: 'Predominantly bachelors-degree granting',
         4: 'Entirely graduate-degree granting',
     },
-    "school.degrees_awarded.highest" : {
+    "school.degrees_awarded.highest": {
         0: 'Non-degree-granting',
         1: 'Certificate degree',
         2: 'Associate degree',
         3: 'Bachelors degree',
         4: 'Graduate degree',
     },
-    "school.institutional_characteristics.level" : {
+    "school.institutional_characteristics.level": {
         1: '4-year',
         2: '2-year',
         3: 'Less-than-2-year',
@@ -269,7 +304,7 @@ def csv_to_list(filename):
         line = line[:-1]
         lol.append(line)
     print(lol)
-    return (lol[1:-1]) # removes the wrapers.
+    return (lol[1:-1])  # removes the wrapers.
 
 
 def url_end_generator(fields):
@@ -318,7 +353,7 @@ def api_to_df(url, object_of_interest):
 
 
 def page_flipper(pagenumber, url_start, url_end):
-    print("start",url_start)
+    print("start", url_start)
     url = url_start + str(pagenumber) + url_end
     print("url", url)
     return url
@@ -333,18 +368,22 @@ def multi_api_to_df(pages, object_of_interest, url_start, url_end):
     :return: pandas dataframe for the api
     """
     df = api_to_df(page_flipper(0, url_start, url_end), 'results')
-    for i in range(1,pages):
-        df = pd.concat([df, api_to_df(page_flipper(i, url_start, url_end), object_of_interest)])
-    
+    for i in range(1, pages):
+        df = pd.concat([
+            df,
+            api_to_df(page_flipper(i, url_start, url_end), object_of_interest)
+        ])
+
     return df
 
 
 def generate_raw_df(field_list, pgs):
-#    field_list = csv_to_list(field_csv)
+    #    field_list = csv_to_list(field_csv)
     url_start = 'https://api.data.gov/ed/collegescorecard/v1/schools.json?_per_page=100&page='
     url_end = url_end_generator(field_list)
-    object_of_interest= 'results'
-    df = multi_api_to_df(pgs, object_of_interest, url_start, url_end) #there are 27 pages under above limitations
+    object_of_interest = 'results'
+    df = multi_api_to_df(pgs, object_of_interest, url_start,
+                         url_end)  #there are 27 pages under above limitations
     #df.to_pickle(filename)
     return df
 
@@ -364,7 +403,7 @@ def give_context(d, df):
     dft = df
     for key in d:
         dft = dft.replace({key: d[key]})
-        
+
     return dft
 
 
@@ -373,15 +412,16 @@ def sex_column_helper(dem_float):
         return "Single-Sex: Men"
     elif dem_float == 1:
         return "Single-Sex: Women"
-    elif dem_float>0 and dem_float < 1 :
+    elif dem_float > 0 and dem_float < 1:
         return "Co-Educational"
     else:
         return "Not Listed"
-    
-    
+
+
 def sex_column(df):
     dft = df
-    dft["singlesex.or.coed"] = dft["latest.student.demographics.women"].apply(sex_column_helper)
+    dft["singlesex.or.coed"] = dft["latest.student.demographics.women"].apply(
+        sex_column_helper)
     return dft
 
 
@@ -397,12 +437,13 @@ def step_1_main(csv_filename, api_pages, context_dict, plk_filename):
 
     # Clean data
     df = organize_columns(df, field_list)
-    df = give_context(context_dict, df) # note that context_dict will prob come in as json and then need to be converted eventually
-    df = sex_column(df) # creates a column that breaks down single-sex vs coed
-
+    df = give_context(
+        context_dict, df
+    )  # note that context_dict will prob come in as json and then need to be converted eventually
+    df = sex_column(df)  # creates a column that breaks down single-sex vs coed
 
     # Store Data
     store_df(df, plk_filename)
-    
 
-step_1_main("simpleFields2.csv", 27, context_dict, "simple_raw_data.plk" )
+
+step_1_main("simpleFields2.csv", 27, context_dict, "simple_raw_data.plk")
