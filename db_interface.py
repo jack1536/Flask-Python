@@ -48,5 +48,3 @@ def query_to_json(q):
     out["rows"].extend(l)
 
     return out
-
-

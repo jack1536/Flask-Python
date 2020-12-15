@@ -1,16 +1,13 @@
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
-from step_2 import step_2_main
 from querybuilder import build_query
 from db_interface import query_to_json
 
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///base.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = True  # TODO: figure out if this is what I want
 
 class College_Data(Resource):
     parser = reqparse.RequestParser()
@@ -35,13 +32,20 @@ class College_Data(Resource):
         return {"table": query_to_json(q)}
 
 
-class Placeholder(Resource):
+class Test(Resource):
+    """
+    Provides a resource to check whether the basic restful api is working without
+    making calls to database and lots of possibilities for problems
+    """
+
     def get(self):
-        return {'output': "Nothing for now"}
-    
-api.add_resource(Placeholder, '/')
-api.add_resource(College_Data, '/send-data')
+        return {'output': "basic restful api is working"}
+
+
+api.add_resource(College_Data, '/', '/send-data')
+api.add_resource(Test, '/test_api')
+
 
 if __name__=='__main__':
     
-    app.run(debug=True)
+    app.run(debug=True)  # TODO: turn debug off
