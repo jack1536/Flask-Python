@@ -8,7 +8,7 @@ class TestDb_Interface(unittest2.TestCase):
         q = "SELECT school_name FROM codetran_collegedata.collegescorecard WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 36 AND 35"
 
         actualOutput = query_to_json(q)
-        expectedOutput = {"column_names": [], "data": []}
+        expectedOutput = {"column_names": [], "rows": []}
 
         self.assertEqual(actualOutput, expectedOutput)
 
@@ -18,11 +18,11 @@ class TestDb_Interface(unittest2.TestCase):
         actualOutput = query_to_json(q)
         expectedOutput = {
             "column_names": ["school_name"],
-             "data": [("Pomona College",), ("Rice University",)]
+             "rows": [("Pomona College",), ("Rice University",)]
         }
 
         self.assertEqual(actualOutput["column_names"], expectedOutput["column_names"])
-        self.assertEqual(actualOutput["data"], expectedOutput["data"])
+        self.assertEqual(actualOutput["rows"], expectedOutput["rows"])
 
     def test_two_col_results(self):
         q = 'SELECT school_name, school_state FROM codetran_collegedata.collegescorecard WHERE school_name="Pomona College" or school_name="Rice University"'
@@ -30,11 +30,11 @@ class TestDb_Interface(unittest2.TestCase):
         actualOutput = query_to_json(q)
         expectedOutput = {
             "column_names": ["school_name", "school_state"],
-             "data": [("Pomona College", "CA"), ("Rice University", "TX")]
+             "rows": [("Pomona College", "CA"), ("Rice University", "TX")]
         }
 
         self.assertEqual(actualOutput["column_names"], expectedOutput["column_names"])
-        self.assertEqual(actualOutput["data"], expectedOutput["data"])
+        self.assertEqual(actualOutput["rows"], expectedOutput["rows"])
 
     def test_non_string_results(self):
         q = 'SELECT school_name, latest_student_size FROM codetran_collegedata.collegescorecard WHERE school_name = "Pomona College" OR school_name = "Rice University"'
@@ -42,11 +42,11 @@ class TestDb_Interface(unittest2.TestCase):
         actualOutput = query_to_json(q)
         expectedOutput = {
             "column_names": ["school_name", "latest_student_size"],
-             "data": [("Pomona College", 1549.0), ("Rice University", 3962.0)]
+             "rows": [("Pomona College", 1549.0), ("Rice University", 3962.0)]
         }
 
         self.assertEqual(actualOutput["column_names"], expectedOutput["column_names"])
-        self.assertEqual(actualOutput["data"], expectedOutput["data"])
+        self.assertEqual(actualOutput["rows"], expectedOutput["rows"])
 
 
 if __name__ == '__main__':
