@@ -35,3 +35,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+      env:
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
