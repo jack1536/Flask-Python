@@ -49,7 +49,7 @@ def build_query(tablename, select_cols, filter_dict):
     in_dict = filter_dict["is_in"]
     for k in in_dict.keys():
         options = in_dict[k]  # list of options that row value must be in
-        if len(options)>0:
+        if len(options) > 0:
             col = k.replace(".", "_")
             options = '"' + '", "'.join(
                 options) + '"'  #  make options into string (SQL format)

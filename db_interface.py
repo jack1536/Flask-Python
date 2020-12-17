@@ -5,10 +5,14 @@ from dotenv import load_dotenv
 load_dotenv()  # loads in .env variables
 import os
 
+
 def execute_query(q):
     # set up sql connection
     conn = MySQLdb.Connection(
-        conv={FIELD_TYPE.LONG: int, FIELD_TYPE.DECIMAL: int},  # FIXME: this does not seem to be working yet TAIGA#10
+        conv={
+            FIELD_TYPE.LONG: int,
+            FIELD_TYPE.DECIMAL: int
+        },  # FIXME: this does not seem to be working yet TAIGA#10
         host='162.241.230.118',
         user=os.environ['MYSQL_USER'],
         passwd=os.environ['MYSQL_PASSWORD'],
