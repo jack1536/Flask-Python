@@ -1,12 +1,28 @@
-def execute_query(q, sql_connection):
-    sql_connection.query(q)
-    result = sql_connection.store_result()
+# mysql related imports
+import MySQLdb
+from MySQLdb.constants import FIELD_TYPE
+from dotenv import load_dotenv
+load_dotenv()  # loads in .env variables
+import os
+
+def execute_query(q):
+    # set up sql connection
+    conn = MySQLdb.Connection(
+        conv={FIELD_TYPE.LONG: int, FIELD_TYPE.DECIMAL: int},  # FIXME: this does not seem to be working yet TAIGA#10
+        host='162.241.230.118',
+        user=os.environ['MYSQL_USER'],
+        passwd=os.environ['MYSQL_PASSWORD'],
+        port=3306,
+        db='codetran_collegedata')
+
+    conn.query(q)
+    result = conn.store_result()
 
     return result
 
 
-def query_to_json(q, sql_connection):
-    result = execute_query(q, sql_connection)
+def query_to_json(q):
+    result = execute_query(q)
     first_row = result.fetch_row(how=1)
 
     # if query doesn't return anything, return object with empty lists
