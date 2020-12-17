@@ -1,9 +1,13 @@
+# flask imports
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
+
+# other imports
 from querybuilder import build_query
 from db_interface import query_to_json
 
+# Start flask app
 app = Flask(__name__)
 CORS(app)
 api = Api(app)

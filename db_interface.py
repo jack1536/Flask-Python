@@ -1,27 +1,24 @@
-from dotenv import load_dotenv
-load_dotenv()
+# mysql related imports
 import MySQLdb
-from MySQLdb import _mysql
-import os
 from MySQLdb.constants import FIELD_TYPE
-
-host = '162.241.230.118'
-user = os.environ['MYSQL_USER']
-password = os.environ['MYSQL_PASSWORD']
-port = 3306
-db = 'codetran_collegedata'
-my_conv = {FIELD_TYPE.LONG: int, FIELD_TYPE.DECIMAL: int}
-
-conn = MySQLdb.Connection(
-    conv=my_conv,  # FIXME: this does not seem to be working yet TAIGA#10
-    host=host,
-    user=user,
-    passwd=password,
-    port=port,
-    db=db)
+from dotenv import load_dotenv
+load_dotenv()  # loads in .env variables
+import os
 
 
 def execute_query(q):
+    # set up sql connection
+    conn = MySQLdb.Connection(
+        conv={
+            FIELD_TYPE.LONG: int,
+            FIELD_TYPE.DECIMAL: int
+        },  # FIXME: this does not seem to be working yet TAIGA#10
+        host='162.241.230.118',
+        user=os.environ['MYSQL_USER'],
+        passwd=os.environ['MYSQL_PASSWORD'],
+        port=3306,
+        db='codetran_collegedata')
+
     conn.query(q)
     result = conn.store_result()
 
