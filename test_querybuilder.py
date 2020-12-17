@@ -14,13 +14,50 @@ class TestQueryBuilder(unittest2.TestCase):
 
         self.assertEqual(actualSQL, expectedSQL)
 
-    def test_multiple_select(self):
+    def test_empty_multiple_select(self):
         tablename = "myTable"
         select_cols = ["school_name", "midpoint.act.score"]
         filter_dict = {"is_in": {}, "is_btwn": {}}
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
         expectedSQL = "SELECT school_name, midpoint_act_score FROM myTable"
+
+        self.assertEqual(actualSQL, expectedSQL)
+
+
+    def test_nested_empty_in(self):
+        tablename = "myTable"
+        select_cols = ["school_name"]
+        filter_dict = {
+            "is_in":{"school.region_id":[],"school.ownership":[],"school.degrees_awarded.highest":[],"school.institutional_characteristics.level":[],"school.minority_serving.historically_black":[],"singlesex.or.coed":[]},
+            "is_btwn": {}}
+
+        actualSQL = qb.build_query(tablename, select_cols, filter_dict)
+        expectedSQL = "SELECT school_name FROM myTable"
+
+        self.assertEqual(actualSQL, expectedSQL)
+
+    def test_nested_empty_in_with_nonempty_in(self):
+        tablename = "myTable"
+        select_cols = ["school_name"]
+        filter_dict = {
+            "is_in":{"school.region_id":[],"school.ownership":["Private nonprofit"],"school.degrees_awarded.highest":[],"school.institutional_characteristics.level":[],"school.minority_serving.historically_black":[],"singlesex.or.coed":[]},
+            "is_btwn": {}}
+
+        actualSQL = qb.build_query(tablename, select_cols, filter_dict)
+        expectedSQL = 'SELECT school_name FROM myTable WHERE school_ownership IN ("Private nonprofit")'
+
+        self.assertEqual(actualSQL, expectedSQL)
+
+    def test_nested_empty_in_with_nonempty_in_and_nonempty_btwn(self):
+        tablename = "myTable"
+        select_cols = ["school_name"]
+        filter_dict = {
+            "is_in":{"school.region_id":[],"school.ownership":["Private nonprofit"],"school.degrees_awarded.highest":[],"school.institutional_characteristics.level":[],"school.minority_serving.historically_black":[],"singlesex.or.coed":[]},
+            "is_btwn": {"latest.student.size": {"min": 0, "max": 50000, "inclusive": "true"}}}
+
+        actualSQL = qb.build_query(tablename, select_cols, filter_dict)
+        expectedSQL = 'SELECT school_name FROM myTable WHERE latest_student_size BETWEEN 0 AND 50000 AND school_ownership IN ("Private nonprofit")'
 
         self.assertEqual(actualSQL, expectedSQL)
 

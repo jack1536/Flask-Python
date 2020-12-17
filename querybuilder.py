@@ -48,12 +48,13 @@ def build_query(tablename, select_cols, filter_dict):
     # WHERE IN
     in_dict = filter_dict["is_in"]
     for k in in_dict.keys():
-        col = k.replace(".", "_")
         options = in_dict[k]  # list of options that row value must be in
-        options = '"' + '", "'.join(
-            options) + '"'  #  make options into string (SQL format)
-        condition = col + " IN (" + options + ")"
-        where_list.append(condition)
+        if len(options)>0:
+            col = k.replace(".", "_")
+            options = '"' + '", "'.join(
+                options) + '"'  #  make options into string (SQL format)
+            condition = col + " IN (" + options + ")"
+            where_list.append(condition)
 
     # Put everything together
     query = select_str + " " + from_str
