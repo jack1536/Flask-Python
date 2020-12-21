@@ -18,7 +18,11 @@ class TestDb_Interface(unittest2.TestCase):
         actualOutput = query_to_json(q)
         expectedOutput = {
             "column_names": ["school_name"],
-            "rows": [("Pomona College",), ("Rice University",)]
+            "rows": [{
+                "school_name": "Pomona College"
+            }, {
+                "school_name": "Rice University"
+            }]
         }
 
         self.assertEqual(actualOutput["column_names"],
@@ -31,7 +35,34 @@ class TestDb_Interface(unittest2.TestCase):
         actualOutput = query_to_json(q)
         expectedOutput = {
             "column_names": ["school_name", "school_state"],
-            "rows": [("Pomona College", "CA"), ("Rice University", "TX")]
+            "rows": [{
+                "school_name": "Pomona College",
+                "school_state": "CA"
+            }, {
+                "school_name": "Rice University",
+                "school_state": "TX"
+            }]
+        }
+
+        self.assertEqual(actualOutput["column_names"],
+                         expectedOutput["column_names"])
+        self.assertEqual(actualOutput["rows"], expectedOutput["rows"])
+
+    def test_results_with_id(self):
+        q = 'SELECT ope6_id, school_name, school_state FROM codetran_collegedata.collegescorecard WHERE school_name="Pomona College" or school_name="Rice University"'
+
+        actualOutput = query_to_json(q)
+        expectedOutput = {
+            "column_names": ["ope6_id", "school_name", "school_state"],
+            "rows": [{
+                "ope6_id": 1173,
+                "school_name": "Pomona College",
+                "school_state": "CA"
+            }, {
+                "ope6_id": 3604,
+                "school_name": "Rice University",
+                "school_state": "TX"
+            }]
         }
 
         self.assertEqual(actualOutput["column_names"],
