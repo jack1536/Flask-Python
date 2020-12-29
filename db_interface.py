@@ -1,4 +1,5 @@
 # mysql related imports
+import sql_info
 import MySQLdb
 from MySQLdb.constants import FIELD_TYPE
 from dotenv import load_dotenv
@@ -13,11 +14,11 @@ def execute_query(q):
             FIELD_TYPE.LONG: int,
             FIELD_TYPE.DECIMAL: int
         },  # FIXME: this does not seem to be working yet TAIGA#10
-        host='162.241.230.118',
+        host=sql_info.get_host(),
         user=os.environ['MYSQL_USER'],
         passwd=os.environ['MYSQL_PASSWORD'],
-        port=3306,
-        db='codetran_collegedata')
+        port=sql_info.get_port(),
+        db=sql_info.get_db_name())
 
     conn.query(q)
     result = conn.store_result()
