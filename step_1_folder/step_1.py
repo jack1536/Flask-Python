@@ -10,55 +10,55 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-field_list = [
-    "ope6_id",
-    "school.name",
-    "school.state",
-    "school.zip",
-    "school.ownership",
-    "school.region_id",
-    "school.price_calculator_url",
-    "school.institutional_characteristics.level",
-    "school.degrees_awarded.predominant",
-    "school.degrees_awarded.highest",
-    "school.carnegie_basic",
-    "school.carnegie_undergrad",
-    "school.carnegie_size_setting",
-    "school.degree_urbanization",
-    "latest.student.size",
-    "school.online_only",
-    "school.minority_serving.historically_black",
-    "school.religious_affiliation",
-    "school.online_only",
-    "latest.student.part_time_share",
-    "latest.student.grad_students",
-    "latest.student.demographics.women",
-    "latest.completion.completion_rate_4yr_100nt",
-    "latest.completion.completion_rate_4yr_150nt",
-    "latest.admissions.admission_rate.overall",
-    "latest.admissions.sat_scores.25th_percentile.critical_reading",
-    "latest.admissions.sat_scores.75th_percentile.critical_reading",
-    "latest.admissions.sat_scores.25th_percentile.math",
-    "latest.admissions.sat_scores.75th_percentile.math",
-    "latest.admissions.sat_scores.average.overall",
-    "latest.admissions.act_scores.25th_percentile.cumulative",
-    "latest.admissions.act_scores.75th_percentile.cumulative",
-    "latest.admissions.act_scores.midpoint.cumulative",
-    "latest.cost.tuition.in_state",
-    "latest.cost.tuition.out_of_state",
-    "latest.aid.pell_grant_rate",
-    "latest.cost.net_price.public.by_income_level.0-30000",
-    "latest.cost.net_price.private.by_income_level.0-30000",
-    "latest.cost.net_price.public.by_income_level.30001-48000",
-    "latest.cost.net_price.private.by_income_level.30001-48000",
-    "latest.cost.net_price.public.by_income_level.48001-75000",
-    "latest.cost.net_price.private.by_income_level.48001-75000",
-    "latest.cost.net_price.public.by_income_level.75001-110000",
-    "latest.cost.net_price.private.by_income_level.75001-110000",
-    "latest.cost.net_price.public.by_income_level.110001-plus",
-    "latest.cost.net_price.private.by_income_level.110001-plus",
-    "school.operating",
-]
+headers = {
+    "ope6_id": "ope6_id",
+    "school.name": "Name",
+    "school.state": "State",
+    "school.zip": "Zip",
+    "school.ownership": "Ownership",
+    "school.region_id": "Region",
+    "school.price_calculator_url": "price_calculator_url",
+    "school.institutional_characteristics.level": "Years",
+    "school.degrees_awarded.predominant": "school.degrees_awarded.predominant",
+    "school.degrees_awarded.highest": "Highest Degree",
+    "school.carnegie_basic": "school.carnegie_basic",
+    "school.carnegie_undergrad": "school.carnegie_undergrad",
+    "school.carnegie_size_setting": "school.carnegie_size_setting",
+    "school.degree_urbanization": "school.degree_urbanization",
+    "latest.student.size": "Size",
+    "school.online_only": "school.online_only",
+    "school.minority_serving.historically_black": "HBCU",
+    "school.religious_affiliation": "school.religious_affiliation",
+    "school.online_only": "school.online_only",
+    "latest.student.part_time_share": "latest.student.part_time_share",
+    "latest.student.grad_students": "latest.student.grad_students",
+    "latest.student.demographics.women": "Single-Sex",
+    "latest.completion.completion_rate_4yr_100nt": "latest.completion.completion_rate_4yr_100nt",
+    "latest.completion.completion_rate_4yr_150nt": "latest.completion.completion_rate_4yr_150nt",
+    "latest.admissions.admission_rate.overall": "latest.admissions.admission_rate.overall",
+    "latest.admissions.sat_scores.25th_percentile.critical_reading": "latest.admissions.sat_scores.25th_percentile.critical_reading",
+    "latest.admissions.sat_scores.75th_percentile.critical_reading": "latest.admissions.sat_scores.75th_percentile.critical_reading",
+    "latest.admissions.sat_scores.25th_percentile.math": "latest.admissions.sat_scores.25th_percentile.math",
+    "latest.admissions.sat_scores.75th_percentile.math": "latest.admissions.sat_scores.75th_percentile.math",
+    "latest.admissions.sat_scores.average.overall": "latest.admissions.sat_scores.average.overall",
+    "latest.admissions.act_scores.25th_percentile.cumulative": "latest.admissions.act_scores.25th_percentile.cumulative",
+    "latest.admissions.act_scores.75th_percentile.cumulative": "latest.admissions.act_scores.75th_percentile.cumulative",
+    "latest.admissions.act_scores.midpoint.cumulative": "Midpoint ACT",
+    "latest.cost.tuition.in_state": "latest.cost.tuition.in_state",
+    "latest.cost.tuition.out_of_state": "latest.cost.tuition.out_of_state",
+    "latest.aid.pell_grant_rate": "latest.aid.pell_grant_rate",
+    "latest.cost.net_price.public.by_income_level.0-30000": "latest.cost.net_price.public.by_income_level.0-30000",
+    "latest.cost.net_price.private.by_income_level.0-30000": "latest.cost.net_price.private.by_income_level.0-30000",
+    "latest.cost.net_price.public.by_income_level.30001-48000": "latest.cost.net_price.public.by_income_level.30001-48000",
+    "latest.cost.net_price.private.by_income_level.30001-48000": "latest.cost.net_price.private.by_income_level.30001-48000",
+    "latest.cost.net_price.public.by_income_level.48001-75000": "latest.cost.net_price.public.by_income_level.48001-75000",
+    "latest.cost.net_price.private.by_income_level.48001-75000": "latest.cost.net_price.private.by_income_level.48001-75000",
+    "latest.cost.net_price.public.by_income_level.75001-110000": "latest.cost.net_price.public.by_income_level.75001-110000",
+    "latest.cost.net_price.private.by_income_level.75001-110000": "latest.cost.net_price.private.by_income_level.75001-110000",
+    "latest.cost.net_price.public.by_income_level.110001-plus": "latest.cost.net_price.public.by_income_level.110001-plus",
+    "latest.cost.net_price.private.by_income_level.110001-plus": "latest.cost.net_price.private.by_income_level.110001-plus",
+    "school.operating": "school.operating",
+}
 
 context_dict = {
     "school.carnegie_basic": {
@@ -420,7 +420,7 @@ def sex_column_helper(dem_float):
 
 def sex_column(df):
     dft = df
-    dft["singlesex.or.coed"] = dft["latest.student.demographics.women"].apply(
+    dft["latest.student.demographics.women"] = dft["latest.student.demographics.women"].apply(
         sex_column_helper)
     return dft
 
@@ -429,8 +429,8 @@ def store_df(df, new_filename):
     df.to_pickle(new_filename)
 
 
-def step_1_main(csv_filename, api_pages, context_dict, plk_filename):
-    #field_list = csv_to_list("simpleFields2.csv")
+def step_1_main(api_pages, output_csv_filename):
+    field_list = headers.keys()
 
     # Generate
     df = generate_raw_df(field_list, api_pages)
@@ -442,8 +442,14 @@ def step_1_main(csv_filename, api_pages, context_dict, plk_filename):
     )  # note that context_dict will prob come in as json and then need to be converted eventually
     df = sex_column(df)  # creates a column that breaks down single-sex vs coed
 
+    # Replace Header Names
+    df.rename(headers, axis=1, inplace=True)
+
     # Store Data
-    store_df(df, plk_filename)
+    df.to_csv(output_csv_filename)
+
+    # return dataframe
+    return df
 
 
-step_1_main("simpleFields2.csv", 27, context_dict, "simple_raw_data.plk")
+step_1_main(1, "simple_raw_data.csv")
