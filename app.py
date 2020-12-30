@@ -2,6 +2,7 @@
 from flask import Flask
 from flask_restful import Resource, reqparse, Api
 from flask_cors import CORS
+import sql_info
 
 # other imports
 from querybuilder import build_query
@@ -27,22 +28,15 @@ class College_Data(Resource):
                         help='dictionary with all of filter information')
 
     def get(self):
-        # make a call for one row of data in order to extract column names
-        q = 'SELECT * FROM codetran_collegedata.collegescorecard WHERE school_name="Pomona College"'
-        column_names = query_to_json(q)['column_names']
-
-        return {
-            'class': 'Email_Data',
-            'tablename': "codetran_collegedata.collegescorecard",
-            'column_names': column_names
-        }
+        # provide select columns and filter columns for the frontend to use
+        return sql_info.get_all_info()
 
     def post(self):
         args = College_Data.parser.parse_args()
 
         # build query
-        tablename = "codetran_collegedata.collegescorecard"
-        select_col = ["school_name", "school_state"]
+        tablename = sql_info.get_table_name()
+        select_col = sql_info.get_select_cols()
         q = build_query(tablename, select_col, args['filter_dict'])
         return {"table": query_to_json(q)}
 
