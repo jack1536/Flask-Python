@@ -7,8 +7,10 @@ load_dotenv()  # loads in .env variables
 import os
 
 
-def execute_query(q):
-    # set up sql connection
+def establish_connection():
+    """
+    Establishes connection with database
+    """
     conn = MySQLdb.Connection(
         conv={
             FIELD_TYPE.LONG: int,
@@ -19,6 +21,12 @@ def execute_query(q):
         passwd=os.environ['MYSQL_PASSWORD'],
         port=sql_info.get_port(),
         db=sql_info.get_db_name())
+    
+    return conn
+
+def execute_query(q):
+    # set up sql connection
+    conn = establish_connection()
 
     conn.query(q)
     result = conn.store_result()

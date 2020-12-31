@@ -452,4 +452,4 @@ def step_1_main(api_pages, output_csv_filename):
     return df
 
 
-step_1_main(1, "simple_raw_data.csv")
+# step_1_main(1, "simple_raw_data.csv")

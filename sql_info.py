@@ -3,10 +3,10 @@ host = '162.241.230.118'
 port = 3306
 db_name = 'codetran_collegedata'
 
-select_cols = ["school_name", "school_state"]
+select_cols = ["Name", "State"]
 
 where_cols = {
-    "school.region_id": [
+    "Region": [
         'U.S. Service Schools',
         'New England (CT, ME, MA, NH, RI, VT)',
         'Mid East (DE, DC, MD, NJ, NY, PA)',
@@ -18,34 +18,34 @@ where_cols = {
         'Far West (AK, CA, HI, NV, OR, WA)',
         'Outlying Areas (AS, FM, GU, MH, MP, PR, PW, VI)',
     ],
-    "school.ownership": [
+    "Ownership": [
         'Public',
         'Private nonprofit',
         'Private for-profit',
     ],
-    "school.degrees_awarded.highest": [
+    "Highest Degree": [
         'Non-degree-granting',
         'Certificate degree',
         'Associate degree',
         'Bachelors degree',
         'Graduate degree',
     ],
-    "school.institutional_characteristics.level": [
+    "Years": [
         '4-year',
         '2-year',
         'Less-than-2-year',
     ],
-    "school.minority_serving.historically_black": [
+    "HBCU": [
         'No',
         'Yes',
     ],
-    "singlesex.or.coed": [
+    "Single-Sex": [
         "Single-Sex: Men",
         "Single-Sex: Women",
         "Co-Educational",
     ],
-    "latest.admissions.act_scores.midpoint.cumulative": [0, 36],
-    "latest.student.size": [0, 50000]
+    "Midpoint ACT": [0, 36],
+    "Size": [0, 50000]
 }
 
 
