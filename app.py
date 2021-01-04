@@ -30,7 +30,7 @@ class College_Data(Resource):
     def get(self):
         # provide select columns and filter columns for the frontend to use
         return {
-            "table_name": sql_info.get_table_name(),
+            "table_name": sql_info.get_full_table_name(),
             "where_cols": sql_info.get_where_cols(),
             "select_cols": sql_info.get_select_cols()
         }
@@ -39,7 +39,7 @@ class College_Data(Resource):
         args = College_Data.parser.parse_args()
 
         # build query
-        tablename = sql_info.get_table_name()
+        tablename = sql_info.get_full_table_name()
         select_col = sql_info.get_select_cols()
         q = build_query(tablename, select_col, args['filter_dict'])
         return {"table": query_to_json(q)}

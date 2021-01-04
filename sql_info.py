@@ -4,7 +4,7 @@ import os
 
 user = os.environ['MYSQL_USER']
 password = os.environ['MYSQL_PASSWORD']
-table_name = "codetran_collegedata.collegeData"
+short_table_name = "scorecard"
 host = '162.241.230.118'
 port = 3306
 db_name = 'codetran_collegedata'
@@ -393,8 +393,12 @@ def get_password():
     return password
 
 
-def get_table_name():
-    return table_name
+def get_full_table_name():
+    return db_name + "." + short_table_name
+
+
+def get_short_table_name():
+    return short_table_name
 
 
 def get_host():
@@ -424,11 +428,3 @@ def get_headers_dict():
 
 def get_context_dict():
     return context_dict
-
-
-def get_all_info():
-    return {
-        "table_name": table_name,
-        "where_cols": where_cols,
-        "select_cols": select_cols
-    }

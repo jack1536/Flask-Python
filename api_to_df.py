@@ -1,15 +1,7 @@
-import datetime
 import requests
 import json
 import pandas as pd
 import sql_info
-import os
-
-import email, smtplib, ssl
-from email import encoders
-from email.mime.base import MIMEBase
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
 
 def url_end_generator(fields):
@@ -96,6 +88,7 @@ def organize_columns(df, field_list):
     """
     Notice that when df is generated from api, columns are in the wrong order. 
     We restore the original order of the csv file.
+    TODO: this may no longer be necessary
     """
     return df[field_list]
 
