@@ -1,3 +1,9 @@
+from dotenv import load_dotenv
+load_dotenv()  # loads in .env variables
+import os
+
+user = os.environ['MYSQL_USER']
+password = os.environ['MYSQL_PASSWORD']
 table_name = "codetran_collegedata.collegeData"
 host = '162.241.230.118'
 port = 3306
@@ -48,6 +54,12 @@ where_cols = {
     "Size": [0, 50000]
 }
 
+
+def get_user():
+    return user
+
+def get_password():
+    return password
 
 def get_table_name():
     return table_name

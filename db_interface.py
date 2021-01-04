@@ -4,19 +4,16 @@ import urllib.parse
 import sql_info
 import MySQLdb
 from MySQLdb.constants import FIELD_TYPE
-from dotenv import load_dotenv
-load_dotenv()  # loads in .env variables
-import os
+
 
 
 def create_sql_alchemy_engine():
-    user = urllib.parse.quote_plus(os.environ['MYSQL_USER'])
-    passwd = urllib.parse.quote_plus(os.environ['MYSQL_PASSWORD'])
+    user = urllib.parse.quote_plus(sql_info.get_user())
+    passwd = urllib.parse.quote_plus(sql_info.get_password())
     host = urllib.parse.quote_plus(sql_info.get_host())
     port = urllib.parse.quote_plus(str(sql_info.get_port()))
     db = urllib.parse.quote_plus(sql_info.get_db_name())
     url = 'mysql://'+user+':'+passwd+'@'+host+'/'+ db
-    print(url)
     return create_engine(url)
 
 def establish_connection():
@@ -29,8 +26,8 @@ def establish_connection():
             FIELD_TYPE.DECIMAL: int
         },  # FIXME: this does not seem to be working yet TAIGA#10
         host=sql_info.get_host(),
-        user=os.environ['MYSQL_USER'],
-        passwd=os.environ['MYSQL_PASSWORD'],
+        user=sql_info.get_user(),
+        passwd=sql_info.get_password(),
         port=sql_info.get_port(),
         db=sql_info.get_db_name())
     
