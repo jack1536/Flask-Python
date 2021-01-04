@@ -25,7 +25,8 @@ AND school_region_id IN ("Mid East (DE, DC, MD, NJ, NY, PA)")
 
 def build_query(tablename, select_cols, filter_dict):
     # SELECT
-    select_cols = "`, `".join(select_cols)  # join list items with commas between
+    select_cols = "`, `".join(
+        select_cols)  # join list items with commas between
     select_cols = select_cols.replace(".",
                                       "_")  # replace . in column names with _
     select_str = "SELECT `" + select_cols + "`"
