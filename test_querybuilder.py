@@ -10,7 +10,7 @@ class TestQueryBuilder(unittest2.TestCase):
         filter_dict = {"is_in": {}, "is_btwn": {}}
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = "SELECT school_name FROM myTable"
+        expectedSQL = "SELECT `school_name` FROM myTable"
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -20,7 +20,7 @@ class TestQueryBuilder(unittest2.TestCase):
         filter_dict = {"is_in": {}, "is_btwn": {}}
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = "SELECT school_name, midpoint_act_score FROM myTable"
+        expectedSQL = "SELECT `school_name`, `midpoint_act_score` FROM myTable"
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -40,7 +40,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = "SELECT school_name FROM myTable"
+        expectedSQL = "SELECT `school_name` FROM myTable"
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -60,7 +60,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = 'SELECT school_name FROM myTable WHERE school_ownership IN ("Private nonprofit")'
+        expectedSQL = 'SELECT `school_name` FROM myTable WHERE `school_ownership` IN ("Private nonprofit")'
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -86,7 +86,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = 'SELECT school_name FROM myTable WHERE latest_student_size BETWEEN 0 AND 50000 AND school_ownership IN ("Private nonprofit")'
+        expectedSQL = 'SELECT `school_name` FROM myTable WHERE `latest_student_size` BETWEEN 0 AND 50000 AND `school_ownership` IN ("Private nonprofit")'
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -105,7 +105,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = "SELECT school_name FROM myTable WHERE midpoint_act_score BETWEEN 28 AND 34"
+        expectedSQL = "SELECT `school_name` FROM myTable WHERE `midpoint_act_score` BETWEEN 28 AND 34"
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -129,7 +129,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = "SELECT school_name FROM myTable WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 0 AND 36 AND latest_student_size BETWEEN 0 AND 50000"
+        expectedSQL = "SELECT `school_name` FROM myTable WHERE `latest_admissions_act_scores_midpoint_cumulative` BETWEEN 0 AND 36 AND `latest_student_size` BETWEEN 0 AND 50000"
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -144,7 +144,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = 'SELECT school_name FROM myTable WHERE school_region_id IN ("Mid East (DE, DC, MD, NJ, NY, PA)")'
+        expectedSQL = 'SELECT `school_name` FROM myTable WHERE `school_region_id` IN ("Mid East (DE, DC, MD, NJ, NY, PA)")'
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -165,7 +165,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = 'SELECT school_name FROM myTable WHERE midpoint_act_score BETWEEN 28 AND 34 AND school_region_id IN ("Mid East (DE, DC, MD, NJ, NY, PA)")'
+        expectedSQL = 'SELECT `school_name` FROM myTable WHERE `midpoint_act_score` BETWEEN 28 AND 34 AND `school_region_id` IN ("Mid East (DE, DC, MD, NJ, NY, PA)")'
 
         self.assertEqual(actualSQL, expectedSQL)
 
@@ -192,7 +192,7 @@ class TestQueryBuilder(unittest2.TestCase):
         }
 
         actualSQL = qb.build_query(tablename, select_cols, filter_dict)
-        expectedSQL = 'SELECT school_name FROM codetran_collegedata.collegescorecard WHERE latest_admissions_act_scores_midpoint_cumulative BETWEEN 14 AND 34 AND latest_student_size BETWEEN 0 AND 35000 AND school_institutional_characteristics_level IN ("4-year") AND singlesex_or_coed IN ("Single-Sex: Women", "Co-Educational")'
+        expectedSQL = 'SELECT `school_name` FROM codetran_collegedata.collegescorecard WHERE `latest_admissions_act_scores_midpoint_cumulative` BETWEEN 14 AND 34 AND `latest_student_size` BETWEEN 0 AND 35000 AND `school_institutional_characteristics_level` IN ("4-year") AND `singlesex_or_coed` IN ("Single-Sex: Women", "Co-Educational")'
         self.assertEqual(actualSQL, expectedSQL)
 
 

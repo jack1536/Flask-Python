@@ -25,10 +25,11 @@ AND school_region_id IN ("Mid East (DE, DC, MD, NJ, NY, PA)")
 
 def build_query(tablename, select_cols, filter_dict):
     # SELECT
-    select_cols = ", ".join(select_cols)  # join list items with commas between
+    select_cols = "`, `".join(
+        select_cols)  # join list items with commas between
     select_cols = select_cols.replace(".",
                                       "_")  # replace . in column names with _
-    select_str = "SELECT " + select_cols
+    select_str = "SELECT `" + select_cols + "`"
 
     # FROM
     from_str = "FROM " + tablename
@@ -42,7 +43,8 @@ def build_query(tablename, select_cols, filter_dict):
         col = k.replace(".", "_")
         lower = btwn_dict[k]['min']
         upper = btwn_dict[k]['max']
-        condition = col + " BETWEEN " + str(lower) + " AND " + str(upper)
+        condition = "`" + col + "`" + " BETWEEN " + str(lower) + " AND " + str(
+            upper)
         where_list.append(condition)
 
     # WHERE IN
@@ -53,7 +55,9 @@ def build_query(tablename, select_cols, filter_dict):
             col = k.replace(".", "_")
             options = '"' + '", "'.join(
                 options) + '"'  #  make options into string (SQL format)
-            condition = col + " IN (" + options + ")"
+            condition = "`" + col + "`" + " IN (" + options + ")"
+            print("condition")
+            print(condition)
             where_list.append(condition)
 
     # Put everything together
