@@ -42,7 +42,8 @@ def build_query(tablename, select_cols, filter_dict):
         col = k.replace(".", "_")
         lower = btwn_dict[k]['min']
         upper = btwn_dict[k]['max']
-        condition = "`" + col + "`" + " BETWEEN " + str(lower) + " AND " + str(upper)
+        condition = "`" + col + "`" + " BETWEEN " + str(lower) + " AND " + str(
+            upper)
         where_list.append(condition)
 
     # WHERE IN

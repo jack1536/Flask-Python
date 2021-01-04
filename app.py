@@ -29,7 +29,11 @@ class College_Data(Resource):
 
     def get(self):
         # provide select columns and filter columns for the frontend to use
-        return sql_info.get_all_info()
+        return {
+            "table_name": sql_info.get_table_name(),
+            "where_cols": sql_info.get_where_cols(),
+            "select_cols": sql_info.get_select_cols()
+        }
 
     def post(self):
         args = College_Data.parser.parse_args()

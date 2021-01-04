@@ -6,15 +6,15 @@ import MySQLdb
 from MySQLdb.constants import FIELD_TYPE
 
 
-
 def create_sql_alchemy_engine():
     user = urllib.parse.quote_plus(sql_info.get_user())
     passwd = urllib.parse.quote_plus(sql_info.get_password())
     host = urllib.parse.quote_plus(sql_info.get_host())
     port = urllib.parse.quote_plus(str(sql_info.get_port()))
     db = urllib.parse.quote_plus(sql_info.get_db_name())
-    url = 'mysql://'+user+':'+passwd+'@'+host+'/'+ db
+    url = 'mysql://' + user + ':' + passwd + '@' + host + '/' + db
     return create_engine(url)
+
 
 def establish_connection():
     """
@@ -30,8 +30,9 @@ def establish_connection():
         passwd=sql_info.get_password(),
         port=sql_info.get_port(),
         db=sql_info.get_db_name())
-    
+
     return conn
+
 
 def execute_query(q):
     # set up sql connection
