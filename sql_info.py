@@ -1,4 +1,4 @@
-table_name = "codetran_collegedata.collegescorecard"
+table_name = "codetran_collegedata.collegeData"
 host = '162.241.230.118'
 port = 3306
 db_name = 'codetran_collegedata'
